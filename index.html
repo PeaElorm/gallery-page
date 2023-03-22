@@ -6,8 +6,79 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
-    <title>Project Title</title>
+    <title>Gallery Page</title>
 </head>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+*{
+    box-sizing: border-box;
+}
+
+body{
+    font-family: 'Roboto',sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.container{
+    display: flex;
+    width: 90vw;
+}
+
+.slide{
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    border-radius: 50px;
+    height: 80vh;
+    flex: 0.5;
+    cursor: pointer;
+    position: relative;
+    margin: 10px;
+    transition: flex 0.7s ease-in;
+    color: rgb(255, 255, 255);
+}
+
+h3{
+    bottom: 20px;
+    left: 20px;
+    position: absolute;
+    opacity: 0;
+    margin: 0;
+}
+
+.slide.active{
+    flex: 5;
+}
+
+.slide.active h3{
+    opacity: 1;
+    transition: opacity 0.3s ease-in 0.5s ;
+}
+
+@media(max-width:480px){
+    /* for mantaining vetical display of slides but hiding last two slides on 480px or less screen sizes */
+    /* .slide:nth-of-type(4), .slide:nth-of-type(5){
+        display: none;
+    } */
+
+    .container{
+        display: flex;
+        flex-direction: column;
+        width: 70vw;
+        height: 70vh;
+    }
+
+}
+
+
+
+</style>
 <body>
     <h1>Our Gallery</h1>
     <div class="container">
@@ -27,6 +98,22 @@
         <h3>Live your Dream!</h3>
         </div>
     </div>
-    <script src="/index.js"></script>
+    <script>
+        const slides = document.querySelectorAll(".slide");
+
+slides.forEach(slide => {
+    slide.addEventListener("click", () => {
+      removeActiveClasses()
+    slide.classList.add("active");
+  });
+});
+
+function removeActiveClasses() {
+  slides.forEach(slide => {
+    slide.classList.remove("active");
+  });
+}
+
+    </script>
 </body>
 </html>
